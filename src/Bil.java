@@ -1,5 +1,12 @@
 import java.awt.*;
 
+enum Direction {
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN
+}
+
 public class Bil implements Movable {
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -7,7 +14,7 @@ public class Bil implements Movable {
     private Color color; // Color of the car
     protected String modelName; // The car model name
     protected double xPosition, yPosition = 0;
-    protected String direction = new String("right");
+    protected Direction direction = Direction.RIGHT;
 
     public Bil(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
@@ -49,57 +56,60 @@ public class Bil implements Movable {
         return enginePower * 0.01;
     }
 
-    public void incrementSpeed(double amount){
+    private void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
-    public void decrementSpeed(double amount){
+    private void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
     public void move(){
         // Switch?
-        if (direction.equals("right")) {
-            xPosition += getCurrentSpeed();
-        }
-        else if (direction.equals("left")) {
-            xPosition -= getCurrentSpeed();
-        }
-        else if (direction.equals("up")) {
-            yPosition += getCurrentSpeed();
-        }
-        else if (direction.equals("down")) {
-            yPosition -= getCurrentSpeed();
+        switch (direction) {
+            case RIGHT:
+                xPosition += getCurrentSpeed();
+                break;
+            case LEFT:
+                xPosition -= getCurrentSpeed();
+                break;
+            case UP:
+                yPosition += getCurrentSpeed();
+                break;
+            case DOWN:
+                yPosition -= getCurrentSpeed();
         }
     }
 
     public void turnLeft(){
-        if (direction.equals("right")) {
-            direction = "up";
-        }
-        else if (direction.equals("left")) {
-            direction = "down";
-        }
-        else if (direction.equals("up")) {
-            direction = "left";
-        }
-        else if (direction.equals("down")) {
-            direction = "right";
+        switch (direction) {
+            case RIGHT:
+                direction = Direction.UP;
+                break;
+            case LEFT:
+                direction = Direction.DOWN;
+                break;
+            case UP:
+                direction = Direction.LEFT;
+                break;
+            case DOWN:
+                direction = Direction.RIGHT;
         }
     }
 
     public void turnRight(){
-        if (direction.equals("right")) {
-            direction = "down";
-        }
-        else if (direction.equals("left")) {
-            direction = "up";
-        }
-        else if (direction.equals("up")) {
-            direction = "right";
-        }
-        else if (direction.equals("down")) {
-            direction = "left";
+        switch (direction) {
+            case RIGHT:
+                direction = Direction.DOWN;
+                break;
+            case LEFT:
+                direction = Direction.UP;
+                break;
+            case UP:
+                direction = Direction.RIGHT;
+                break;
+            case DOWN:
+                direction = Direction.LEFT;
         }
     }
 
