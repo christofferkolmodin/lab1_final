@@ -1,15 +1,15 @@
 import java.awt.*;
 
-public class Bil implements Movable {
+public class Vehicle implements Movable {
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
+    protected double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     protected String modelName; // The car model name
     protected double xPosition, yPosition = 0;
     protected String direction = new String("right");
 
-    public Bil(int nrDoors, double enginePower, Color color, String modelName) {
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;

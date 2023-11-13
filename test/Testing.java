@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 public class Testing {
 
     private Saab95 saab = new Saab95();
-    private Bil volvo = new Volvo240();
+    private Vehicle volvo = new Volvo240();
+
+    private Scania scania = new Scania();
 
     @Test
     public void testBilGetEnginePowerAndSaabConstructor(){
@@ -182,6 +184,54 @@ public class Testing {
             volvo.gas(1);
         }
         assertTrue(volvo.getCurrentSpeed() == 100);
+    }
+
+    @Test
+    public void testScaniaRaiseTrailer(){
+        scania.raiseTrailer(20);
+        scania.raiseTrailer(7);
+
+        assertTrue(scania.getTrailerAngle() == 27);
+    }
+
+    @Test
+    public void testScaniaLowerTrailer(){
+        scania.raiseTrailer(25);
+        scania.lowerTrailer(14);
+
+        assertTrue(scania.getTrailerAngle() == 11);
+    }
+
+    @Test
+    public void testScaniaRaiseTrailerUpperLimit(){
+        scania.raiseTrailer(500);
+
+        assertTrue(scania.getTrailerAngle() == 70);
+    }
+
+    @Test
+    public void testScaniaLowerTrailerLowerLimit(){
+        scania.lowerTrailer(100);
+
+        assertTrue(scania.getTrailerAngle() == 0);
+    }
+
+    @Test
+    public void testScaniaStartEngine(){
+        scania.raiseTrailer(20);
+        scania.startEngine();
+
+        assertTrue(scania.currentSpeed == 0);
+
+    }
+
+    @Test
+    public void testScaniaGas(){
+        scania.raiseTrailer(20);
+        scania.gas(1);
+
+        assertTrue(scania.currentSpeed == 0);
+
     }
 
 }
