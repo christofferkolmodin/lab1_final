@@ -84,43 +84,47 @@ public class Testing {
         assertTrue(saab.speedFactor() == 1.25);
     }
 
-    @Test
-    public void testIncrementSpeed() {
-        volvo.startEngine();
-        volvo.incrementSpeed(50);
-        assertTrue(volvo.getCurrentSpeed() == 62.6);
-    }
+    // This test was used to test incrementSpeed() when it was public
+//    @Test
+//    public void testIncrementSpeed() {
+//        volvo.startEngine();
+//        volvo.incrementSpeed(50);
+//        assertTrue(volvo.getCurrentSpeed() == 62.6);
+//    }
 
-    @Test
-    public void testDecrementSpeed() {
-        volvo.startEngine();
-        volvo.incrementSpeed(50);
-        volvo.decrementSpeed(25);
-        assertTrue(volvo.getCurrentSpeed() == 31.35);
-    }
+    // This test was used to test decrementSpeed() when it was public
+//    @Test
+//    public void testDecrementSpeed() {
+//        volvo.startEngine();
+//        volvo.incrementSpeed(50);
+//        volvo.decrementSpeed(25);
+//        assertTrue(volvo.getCurrentSpeed() == 31.35);
+//    }
 
-    @Test
-    public void testMove() {
-        volvo.startEngine();
-        volvo.incrementSpeed(50);
-        volvo.move();
-        volvo.move();
-        assertTrue(volvo.xPosition == 125.2);
-    }
+        // This test was used to test testMove when it was public
+//    @Test
+//    public void testMove() {
+//        volvo.startEngine();
+//        volvo.incrementSpeed(50);
+//        volvo.move();
+//        volvo.move();
+//        assertTrue(volvo.xPosition == 125.2);
+//    }
 
-    @Test
-    public void testTurnLeft() {
-        volvo.startEngine();
-        volvo.turnLeft();
-        volvo.incrementSpeed(50);
-        volvo.move();
-        assertTrue(volvo.yPosition == 62.6);
-    }
+        // This test was used to test turnLeft() when it was public
+//    @Test
+//    public void testTurnLeft() {
+//        volvo.startEngine();
+//        volvo.turnLeft();
+//        volvo.incrementSpeed(50);
+//        volvo.move();
+//        assertTrue(volvo.yPosition == 62.6);
+//    }
 
     @Test
     public void testTurnRight() {
         volvo.turnRight();
-        assertTrue(volvo.direction.equals("down"));
+        assertTrue(volvo.direction == Direction.DOWN);
     }
 
     @Test
