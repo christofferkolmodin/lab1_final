@@ -20,8 +20,8 @@ public class VolvoVNR extends Vehicle{
 
     }
 
-    public double getTruckBedAngle() {
-        return getTruckBedAngle();
+    public double getTruckBedPosition() {
+        return truckBedPosition;
     }
     //Ramp only has two settings: UP or DOWN
     protected void raiseTruckBedPosition(int amount){

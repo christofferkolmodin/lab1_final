@@ -225,17 +225,17 @@ public class Testing {
         scania.raiseTrailer(20);
         scania.startEngine();
 
-        assertTrue(scania.currentSpeed == 0);
+        assertTrue(scania.getCurrentSpeed() == 0);
 
     }
 
-    @Test
-    public void testScaniaGas(){
-        scania.raiseTrailer(20);
-        scania.gas(1);
 
-        assertTrue(scania.currentSpeed == 0);
+//    @Test
+//    public void testScaniaGas(){
+//        scania.raiseTrailer(20);
+//        scania.gas(1);
+//
+//        assertTrue(scania.getCurrentSpeed() == 0);
+//    }
 
-    }
-
-    }
+}

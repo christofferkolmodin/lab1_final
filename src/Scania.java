@@ -1,61 +1,32 @@
 import java.awt.*;
 public class Scania extends Vehicle {
 
-    private double trailerAngle = 0;
+    private final TruckBed parent = new TruckBed();
+    private int truckBedAngle = 0;
+    private int maxAngle = 70;
+    private int minAngle = 0;
 
-    protected Scania(){ super(2, 110, Color.magenta, "Scania");
-
-
+    protected Scania(){
+        super(2, 110, Color.magenta, "Scania");
     }
-    protected void raiseTrailer(double angle){
-        if((trailerAngle + angle) < 70){
-            trailerAngle += angle;
-
-        }
-
-        else{
-            trailerAngle = 70;
-
-        }
-
-
+    protected void raiseTrailer(int angle){
+        truckBedAngle = parent.raiseTruckBed(maxAngle, angle, truckBedAngle);
     }
-    protected void lowerTrailer(double angle){
-        if((trailerAngle - angle) < 0) {
-            trailerAngle = 0;
-        }
-
-        else{
-            trailerAngle -= angle;
-        }
+    protected void lowerTrailer(int angle){
+        truckBedAngle = parent.lowerTruckBed(minAngle, angle, truckBedAngle);
     }
 
-    public double getTrailerAngle(){
-        return trailerAngle;
+    public int getTrailerAngle(){
+        return truckBedAngle;
     }
 
-    @Override
-    public void gas(double amount){
-        if (amount > 1) {
-            amount = 1;
-        }
-        else if (amount < 0){
-            amount = 0;
-        }
-        if (trailerAngle == 0){
-            incrementSpeed(amount);
-        }
-    }
-
+//    @Override
+//    public void gas(double amount){
+//        incrementSpeed
+//    }
     @Override
     public void startEngine(){
-        if (trailerAngle == 0) {
-            currentSpeed = 0.1;
-        }
-
-        else{
-            System.out.println("Trailer angle has to be 0 to start engine");
-        }
+        currentSpeed = parent.startEngine(getTrailerAngle(), currentSpeed);
     }
 
 }

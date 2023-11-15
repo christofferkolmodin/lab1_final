@@ -17,9 +17,6 @@ public class TruckBed {
 //        }
 //        return newAngle;
 //    }
-    public double getTruckBedPosition(double currentPosition) {
-        return currentPosition;
-    }
 
 
     public double startEngine(int truckBedPosition, double currentSpeed) {
@@ -35,4 +32,18 @@ public class TruckBed {
         }
         return currentSpeed;
     }
+
+//    public double gas(int truckBedPosition, double currentSpeed, double amount) {
+//        if (truckBedPosition == 0) {
+//            if (amount > 1) {
+//                amount = 1;
+//            }
+//            else if (amount < 0){
+//                amount = 0;
+//            }
+//            return amount;
+//        }
+//        else {
+//            return 0;
+//        }
 }
