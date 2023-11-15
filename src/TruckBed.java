@@ -1,42 +1,38 @@
-public class TruckBed{
-    public TruckBed(){}
-    public double raiseTruckBed(double maxAngle){
-        return maxAngle;
+public class TruckBed {
+
+
+    public int raiseTruckBed(int maxPosition, int amount, int currentPosition) {
+        return Math.min(currentPosition + amount, maxPosition);
     }
 
-    public double lowerTruckBed(double minAngle){
-        return minAngle;
+    public int lowerTruckBed(int minPosition, int amount, int currentPosition) {
+        return Math.max(currentPosition - amount, minPosition);
     }
 
-    public double setTruckBed(double currentAngle, double newAngle){
-        if ((currentAngle + newAngle < 70) && (currentAngle + newAngle) > 0){
-            newAngle = currentAngle + newAngle;
+    //    public double setTruckBedPosition(double maxPosition, double minPosition, double position){
+//
+//
+//        if ((position > maxPosition) || (position < minPosition)){
+//            return position;
+//        }
+//        return newAngle;
+//    }
+    public double getTruckBedPosition(double currentPosition) {
+        return currentPosition;
+    }
 
 
+    public double startEngine(int truckBedPosition, double currentSpeed) {
+
+        if (currentSpeed != 0) {
+            System.out.println("Engine is already on!");
         }
-
-        return newAngle;
-    }
-
-    public void getTruckBedAngle(){
-
-
-    }
-
-
-
-    public double startEngine(double trailerAngle, double currentSpeed){
-
-        if (trailerAngle == 0) {
-            currentSpeed = 0.1;
+        else if (truckBedPosition == 0) {
+            return 0.1;
         }
-
-        else{
-            System.out.println("Trailer angle has to be 0 to start engine");
+        else {
+            System.out.println("Trailer position has to be 0 to start engine");
         }
-
         return currentSpeed;
-
-
     }
 }

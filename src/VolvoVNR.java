@@ -3,12 +3,12 @@ import java.awt.*;
 public class VolvoVNR extends Vehicle{
 
 
-    private final TruckBed truckBed = new TruckBed();
+    private final TruckBed parent = new TruckBed();
 
-    private double maxAngle = 70;
-    private double minAngle = 0;
-
-    private double truckBedAngle = 0;
+    private int maxPosition = 1;
+    private int minPosition = 0;
+    private int truckBedPosition = 0;
+    private int amount;
 
 
     //Variable for max amount of loaded cars
@@ -18,18 +18,19 @@ public class VolvoVNR extends Vehicle{
     public VolvoVNR(){
         super(2, 150, Color.cyan, "VolvoVNR");
 
-
     }
 
+    public double getTruckBedAngle() {
+        return getTruckBedAngle();
+    }
     //Ramp only has two settings: UP or DOWN
-    protected void raiseTruckBed(){
-        truckBedAngle = truckBed.raiseTruckBed(maxAngle);
-
+    protected void raiseTruckBedPosition(int amount){
+        truckBedPosition = parent.raiseTruckBed(maxPosition, amount, truckBedPosition);
     }
 
     //Ramp can only be lowered if the car is not moving
     protected void lowerTruckBed(){
-        truckBedAngle = truckBed.lowerTruckBed(minAngle);
+        truckBedPosition = parent.lowerTruckBed(maxPosition, amount, truckBedPosition);
     }
 
     //Cars can only be loaded if the ramp is down
@@ -45,9 +46,7 @@ public class VolvoVNR extends Vehicle{
 
     @Override
     public void startEngine(){
-        currentSpeed = truckBed.startEngine(truckBedAngle, currentSpeed);
+        currentSpeed = parent.startEngine(truckBedPosition, currentSpeed);
     }
-
-
 
 }
