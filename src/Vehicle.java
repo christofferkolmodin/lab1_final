@@ -65,7 +65,6 @@ public class Vehicle implements Movable {
     }
 
     public void move(){
-        // Switch?
         switch (direction) {
             case RIGHT:
                 xPosition += getCurrentSpeed();

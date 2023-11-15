@@ -8,8 +8,8 @@ public class Testing {
 
     private Saab95 saab = new Saab95();
     private Vehicle volvo = new Volvo240();
-
     private Scania scania = new Scania();
+    private VolvoVNR volvoVNR = new VolvoVNR();
 
     @Test
     public void testBilGetEnginePowerAndSaabConstructor(){
@@ -84,42 +84,23 @@ public class Testing {
         assertTrue(saab.speedFactor() == 1.25);
     }
 
-    // This test was used to test incrementSpeed() when it was public
-//    @Test
-//    public void testIncrementSpeed() {
-//        volvo.startEngine();
-//        volvo.incrementSpeed(50);
-//        assertTrue(volvo.getCurrentSpeed() == 62.6);
-//    }
+    @Test
+    public void testMove() {
+        volvo.startEngine();
+        volvo.gas(1);
+        volvo.move();
+        volvo.move();
+        assertTrue(volvo.xPosition == 2.7);
+    }
 
-    // This test was used to test decrementSpeed() when it was public
-//    @Test
-//    public void testDecrementSpeed() {
-//        volvo.startEngine();
-//        volvo.incrementSpeed(50);
-//        volvo.decrementSpeed(25);
-//        assertTrue(volvo.getCurrentSpeed() == 31.35);
-//    }
-
-        // This test was used to test testMove when it was public
-//    @Test
-//    public void testMove() {
-//        volvo.startEngine();
-//        volvo.incrementSpeed(50);
-//        volvo.move();
-//        volvo.move();
-//        assertTrue(volvo.xPosition == 125.2);
-//    }
-
-        // This test was used to test turnLeft() when it was public
-//    @Test
-//    public void testTurnLeft() {
-//        volvo.startEngine();
-//        volvo.turnLeft();
-//        volvo.incrementSpeed(50);
-//        volvo.move();
-//        assertTrue(volvo.yPosition == 62.6);
-//    }
+    @Test
+    public void testTurnLeft() {
+        volvo.startEngine();
+        volvo.turnLeft();
+        volvo.gas(1);
+        volvo.move();
+        assertTrue(volvo.yPosition == 1.35);
+    }
 
     @Test
     public void testTurnRight() {
@@ -128,7 +109,7 @@ public class Testing {
     }
 
     @Test
-    public void testGas() {
+    public void testGasAndIncrementSpeed() {
         volvo.startEngine();
         volvo.gas(0.5);
         assertTrue(volvo.getCurrentSpeed() == 0.725);
@@ -149,7 +130,7 @@ public class Testing {
     }
 
     @Test
-    public void testBreak() {
+    public void testBrakeAndDecrementSpeed() {
         volvo.startEngine();
         volvo.gas(0.5);
 
@@ -221,21 +202,66 @@ public class Testing {
     }
 
     @Test
-    public void testScaniaStartEngine(){
+    public void testScaniaTrailerPreventStartEngine(){
         scania.raiseTrailer(20);
         scania.startEngine();
 
         assertTrue(scania.getCurrentSpeed() == 0);
+    }
 
+    @Test
+    public void testScaniaTrailerPreventGas(){
+        scania.raiseTrailer(20);
+        scania.gas(1);
+
+        assertTrue(scania.getCurrentSpeed() == 0);
+    }
+
+    @Test
+    public void testScaniaGas(){
+        scania.gas(1);
+
+        assertTrue(scania.getCurrentSpeed() == 1.1);
+    }
+
+    @Test
+    public void testScaniaStartEngine(){
+        scania.startEngine();
+        assertTrue(scania.getCurrentSpeed() == 0.1);
     }
 
 
-//    @Test
-//    public void testScaniaGas(){
-//        scania.raiseTrailer(20);
-//        scania.gas(1);
-//
-//        assertTrue(scania.getCurrentSpeed() == 0);
-//    }
+    @Test
+    public void testVolvoVnrRaisePositionAndUpperLimit() {
+        volvoVNR.raiseTruckBedPosition(5);
+
+        assertTrue(volvoVNR.getTruckBedPosition() == 1);
+    }
+
+    @Test
+    public void testVolvoVnrLowerPositionAndLowerLimit() {
+        volvoVNR.raiseTruckBedPosition(1);
+        volvoVNR.lowerTruckBedPosition(4);
+
+        assertTrue(volvoVNR.getTruckBedPosition() == 0);
+    }
+
+    @Test
+    public void testVolvoVnrPreventStartEngine(){
+        volvoVNR.raiseTruckBedPosition(1);
+        volvoVNR.gas(1);
+
+        assertTrue(volvoVNR.getCurrentSpeed() == 0);
+    }
+
+    @Test
+    public void testVolvoVnrPreventGas(){
+        volvoVNR.raiseTruckBedPosition(1);
+        volvoVNR.gas(1);
+
+        assertTrue(scania.getCurrentSpeed() == 0);
+    }
+
+
 
 }

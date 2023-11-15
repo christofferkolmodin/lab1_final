@@ -4,33 +4,39 @@ public class VolvoVNR extends Vehicle{
 
 
     private final TruckBed parent = new TruckBed();
-
-    private int maxPosition = 1;
-    private int minPosition = 0;
+    private final int minPosition = 0;
+    private final int maxPosition = 1;
     private int truckBedPosition = 0;
-    private int amount;
-
 
     //Variable for max amount of loaded cars
     //Size of cars cannot be too large (eget antagande)
-
 
     public VolvoVNR(){
         super(2, 150, Color.cyan, "VolvoVNR");
 
     }
 
-    public double getTruckBedPosition() {
+    public int getTruckBedPosition() {
         return truckBedPosition;
     }
     //Ramp only has two settings: UP or DOWN
-    protected void raiseTruckBedPosition(int amount){
-        truckBedPosition = parent.raiseTruckBed(maxPosition, amount, truckBedPosition);
+    public void raiseTruckBedPosition(int incrementPosition){
+        truckBedPosition = parent.raiseTruckBed(maxPosition, incrementPosition, truckBedPosition);
     }
 
     //Ramp can only be lowered if the car is not moving
-    protected void lowerTruckBed(){
-        truckBedPosition = parent.lowerTruckBed(maxPosition, amount, truckBedPosition);
+    public void lowerTruckBedPosition(int decrementPosition){
+        truckBedPosition = parent.lowerTruckBed(maxPosition, decrementPosition, truckBedPosition);
+    }
+
+    @Override
+    public void startEngine(){
+        currentSpeed = parent.startEngine(getTruckBedPosition(), currentSpeed);
+    }
+
+    @Override
+    public void gas(double amount){
+        super.gas(parent.gas(getTruckBedPosition(), amount));
     }
 
     //Cars can only be loaded if the ramp is down
@@ -44,9 +50,6 @@ public class VolvoVNR extends Vehicle{
 
     //This truck cannot be loaded onto another.
 
-    @Override
-    public void startEngine(){
-        currentSpeed = parent.startEngine(truckBedPosition, currentSpeed);
-    }
+
 
 }
