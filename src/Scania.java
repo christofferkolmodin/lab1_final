@@ -20,10 +20,10 @@ public class Scania extends Vehicle {
         return truckBedAngle;
     }
 
-//    @Override
-//    public void gas(double amount){
-//        incrementSpeed
-//    }
+    @Override
+    public void gas(double amount){
+        super.gas(parent.gas(truckBedAngle, getCurrentSpeed(), amount));
+    }
     @Override
     public void startEngine(){
         currentSpeed = parent.startEngine(getTrailerAngle(), currentSpeed);
