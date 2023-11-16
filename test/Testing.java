@@ -10,6 +10,7 @@ public class Testing {
     private Vehicle volvo = new Volvo240();
     private Scania scania = new Scania();
     private VolvoVNR volvoVNR = new VolvoVNR();
+    private VolvoVNR volvoVNR2= new VolvoVNR();
 
     @Test
     public void testBilGetEnginePowerAndSaabConstructor(){
