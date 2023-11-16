@@ -8,7 +8,7 @@ public class Scania extends Vehicle {
 
 
     protected Scania(){
-        super(2, 110, Color.magenta, "Scania");
+        super(2, 110, Color.magenta, "Scania", 5000);
     }
 
     public int getTrailerAngle(){

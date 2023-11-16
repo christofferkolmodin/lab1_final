@@ -13,14 +13,16 @@ public class Vehicle implements Movable {
     protected double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     protected String modelName; // The car model name
+    private int carWeightInKG;
     protected double xPosition, yPosition = 0;
     protected Direction direction = Direction.RIGHT;
 
-    public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName, int carWeightInKG) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.carWeightInKG = carWeightInKG;
         stopEngine();
     }
 
@@ -38,6 +40,17 @@ public class Vehicle implements Movable {
 
     public Color getColor(){
         return color;
+    }
+
+    public int getCarWeightInKG() {
+        return carWeightInKG;
+    }
+    public double getPositionX() {
+        return xPosition;
+    }
+
+    public double getPositionY() {
+        return yPosition;
     }
 
     public void setColor(Color clr){

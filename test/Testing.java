@@ -233,22 +233,22 @@ public class Testing {
 
     @Test
     public void testVolvoVnrRaisePositionAndUpperLimit() {
-        volvoVNR.raiseTruckBedPosition(5);
+        volvoVNR.lowerRamp(5);
 
         assertTrue(volvoVNR.getTruckBedPosition() == 1);
     }
 
     @Test
     public void testVolvoVnrLowerPositionAndLowerLimit() {
-        volvoVNR.raiseTruckBedPosition(1);
-        volvoVNR.lowerTruckBedPosition(4);
+        volvoVNR.lowerRamp(1);
+        volvoVNR.raiseRamp(4);
 
         assertTrue(volvoVNR.getTruckBedPosition() == 0);
     }
 
     @Test
     public void testVolvoVnrPreventStartEngine(){
-        volvoVNR.raiseTruckBedPosition(1);
+        volvoVNR.lowerRamp(1);
         volvoVNR.gas(1);
 
         assertTrue(volvoVNR.getCurrentSpeed() == 0);
@@ -256,12 +256,44 @@ public class Testing {
 
     @Test
     public void testVolvoVnrPreventGas(){
-        volvoVNR.raiseTruckBedPosition(1);
+        volvoVNR.lowerRamp(1);
         volvoVNR.gas(1);
 
         assertTrue(scania.getCurrentSpeed() == 0);
     }
 
+    @Test
+    public void testVolvoVnrLoadCars() {
+        volvoVNR.lowerRamp(1);
+        for (int i = 0; i < 10; i++) {
+            volvoVNR.loadCar(saab);
+        }
+
+        assertTrue(volvoVNR.getloadedCarsSize() == 1);
+    }
+    @Test
+    public void testVolvoVnrLoadedCarStackPosition(){
+        volvoVNR.lowerRamp(1);
+        volvoVNR.loadCar(saab);
+        volvoVNR.raiseRamp(1);
+        volvoVNR.startEngine();
+        volvoVNR.move();
+        assertTrue(volvoVNR.getPositionX() == saab.getPositionX());
+    }
+    @Test
+    public void testVolvoVnrUnloadcar(){
+        volvoVNR.lowerRamp(1);
+        volvoVNR.loadCar(saab);
+        volvoVNR.raiseRamp(1);
+        volvoVNR.startEngine();
+        volvoVNR.move();
+        volvoVNR.brake(1);
+        volvoVNR.lowerRamp(1);
+        volvoVNR.unloadCar();
+        assertTrue(saab.getPositionX() == -1.9);
 
 
+    }
+    @Test
+    public void
 }
