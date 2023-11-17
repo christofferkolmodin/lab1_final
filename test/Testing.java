@@ -335,7 +335,7 @@ public class Testing {
         vehicleWorkshop2.putVehicleInWorkshop(saab);
         vehicleWorkshop2.putVehicleInWorkshop(volvoVNR);
 
-        assertTrue(vehicleWorkshop2.retrieveVehicleFromWorkshop(saab) instanceof Saab95);
+        assertTrue(vehicleWorkshop2.retrieveVehicleFromWorkshop(saab));
     }
 
     @Test
