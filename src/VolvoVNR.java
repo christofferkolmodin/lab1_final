@@ -10,8 +10,7 @@ public class VolvoVNR extends Vehicle{
     private final int loadedCarCapacity = 4;
     private final int loadingRange = 2;
     private final int carWeightLimit = 2500;
-    private Stack<Vehicle> loadedCars = new Stack<Vehicle>();
-    private int size = loadedCars.size();
+    private final Stack<Vehicle> loadedCars = new Stack<>();
     private int truckBedPosition = 0;
 
     //Variable for max amount of loaded cars
@@ -33,7 +32,7 @@ public class VolvoVNR extends Vehicle{
         truckBedPosition = parent.raiseTruckBed(rampDown, incrementPosition, truckBedPosition);
     }
 
-    //Ramp can only be lowered if the car is not moving
+    // Ramp can only be lowered if the car is not moving
     public void raiseRamp(int decrementPosition){
         truckBedPosition = parent.lowerTruckBed(rampUp, decrementPosition, truckBedPosition);
     }
@@ -83,8 +82,4 @@ public class VolvoVNR extends Vehicle{
                 car.yPosition = yPosition;
         }
     }
-    //This truck cannot be loaded onto another.
-
-
-
 }

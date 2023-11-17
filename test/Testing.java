@@ -10,41 +10,46 @@ public class Testing {
     private Vehicle volvo = new Volvo240();
     private Scania scania = new Scania();
     private VolvoVNR volvoVNR = new VolvoVNR();
-    private VolvoVNR volvoVNR2= new VolvoVNR();
+    private Scania scania = new Scania();
+    private VolvoVNR volvoVNR2 = new VolvoVNR();
 
     @Test
-    public void testBilGetEnginePowerAndSaabConstructor(){
+    public void testBilGetEnginePowerAndSaabConstructor() {
         assertTrue(saab.getEnginePower() == 125);
     }
 
     @Test
-    public void testBilGetNrDoorsAndSaabConstructor(){
+    public void testBilGetNrDoorsAndSaabConstructor() {
         assertTrue(saab.getNrDoors() == 2);
     }
+
     @Test
-    public void testBilGetColorAndSaabConstructor(){
+    public void testBilGetColorAndSaabConstructor() {
         assertTrue(saab.getColor() == Color.red);
     }
+
     @Test
-    public void testSaabConstructorModelNameAttribute(){
+    public void testSaabConstructorModelNameAttribute() {
         assertTrue(saab.modelName.equals("Saab95"));
     }
 
     @Test
-    public void testBilGetEnginePowerAndVolvoConstructor(){
+    public void testBilGetEnginePowerAndVolvoConstructor() {
         assertTrue(volvo.getEnginePower() == 100);
     }
 
     @Test
-    public void testBilGetNrDoorsAndVolvoConstructor(){
+    public void testBilGetNrDoorsAndVolvoConstructor() {
         assertTrue(volvo.getNrDoors() == 4);
     }
+
     @Test
-    public void testBilGetColorAndVolvoConstructor(){
+    public void testBilGetColorAndVolvoConstructor() {
         assertTrue(volvo.getColor() == Color.black);
     }
+
     @Test
-    public void testVolvoConstructorModelNAmeAttribute(){
+    public void testVolvoConstructorModelNAmeAttribute() {
         assertTrue(volvo.modelName.equals("Volvo240"));
     }
 
@@ -61,7 +66,7 @@ public class Testing {
     }
 
     @Test
-    public void testStopEngine(){
+    public void testStopEngine() {
         saab.startEngine();
         saab.stopEngine();
         assertTrue(saab.getCurrentSpeed() == 0);
@@ -142,8 +147,7 @@ public class Testing {
 
     @Test
     public void testBreakUpperLimit() {
-        for (int i = 0; i < 1000; i++)
-        {
+        for (int i = 0; i < 1000; i++) {
             volvo.gas(1);
         }
         // currentSpeed = 100
@@ -153,8 +157,7 @@ public class Testing {
 
     @Test
     public void testBreakLowerLimit() {
-        for (int i = 0; i < 1000; i++)
-        {
+        for (int i = 0; i < 1000; i++) {
             volvo.gas(1);
         }
         // currentSpeed = 100
@@ -165,15 +168,14 @@ public class Testing {
     @Test
     public void testSpeedLimitedByEnginePower() {
         volvo.startEngine();
-        for (int i = 0; i < 1000; i++)
-        {
+        for (int i = 0; i < 1000; i++) {
             volvo.gas(1);
         }
         assertTrue(volvo.getCurrentSpeed() == 100);
     }
 
     @Test
-    public void testScaniaRaiseTrailer(){
+    public void testScaniaRaiseTrailer() {
         scania.raiseTrailer(20);
         scania.raiseTrailer(7);
 
@@ -181,7 +183,7 @@ public class Testing {
     }
 
     @Test
-    public void testScaniaLowerTrailer(){
+    public void testScaniaLowerTrailer() {
         scania.raiseTrailer(25);
         scania.lowerTrailer(14);
 
@@ -189,21 +191,21 @@ public class Testing {
     }
 
     @Test
-    public void testScaniaRaiseTrailerUpperLimit(){
+    public void testScaniaRaiseTrailerUpperLimit() {
         scania.raiseTrailer(500);
 
         assertTrue(scania.getTrailerAngle() == 70);
     }
 
     @Test
-    public void testScaniaLowerTrailerLowerLimit(){
+    public void testScaniaLowerTrailerLowerLimit() {
         scania.lowerTrailer(100);
 
         assertTrue(scania.getTrailerAngle() == 0);
     }
 
     @Test
-    public void testScaniaTrailerPreventStartEngine(){
+    public void testScaniaTrailerPreventStartEngine() {
         scania.raiseTrailer(20);
         scania.startEngine();
 
@@ -211,7 +213,7 @@ public class Testing {
     }
 
     @Test
-    public void testScaniaTrailerPreventGas(){
+    public void testScaniaTrailerPreventGas() {
         scania.raiseTrailer(20);
         scania.gas(1);
 
@@ -219,14 +221,14 @@ public class Testing {
     }
 
     @Test
-    public void testScaniaGas(){
+    public void testScaniaGas() {
         scania.gas(1);
 
         assertTrue(scania.getCurrentSpeed() == 1.1);
     }
 
     @Test
-    public void testScaniaStartEngine(){
+    public void testScaniaStartEngine() {
         scania.startEngine();
         assertTrue(scania.getCurrentSpeed() == 0.1);
     }
@@ -248,7 +250,7 @@ public class Testing {
     }
 
     @Test
-    public void testVolvoVnrPreventStartEngine(){
+    public void testVolvoVnrPreventStartEngine() {
         volvoVNR.lowerRamp(1);
         volvoVNR.gas(1);
 
@@ -256,7 +258,7 @@ public class Testing {
     }
 
     @Test
-    public void testVolvoVnrPreventGas(){
+    public void testVolvoVnrPreventGas() {
         volvoVNR.lowerRamp(1);
         volvoVNR.gas(1);
 
@@ -272,8 +274,9 @@ public class Testing {
 
         assertTrue(volvoVNR.getloadedCarsSize() == 1);
     }
+
     @Test
-    public void testVolvoVnrLoadedCarStackPosition(){
+    public void testVolvoVnrLoadedCarStackPosition() {
         volvoVNR.lowerRamp(1);
         volvoVNR.loadCar(saab);
         volvoVNR.raiseRamp(1);
@@ -281,8 +284,9 @@ public class Testing {
         volvoVNR.move();
         assertTrue(volvoVNR.getPositionX() == saab.getPositionX());
     }
+
     @Test
-    public void testVolvoVnrUnloadcar(){
+    public void testVolvoVnrUnloadcar() {
         volvoVNR.lowerRamp(1);
         volvoVNR.loadCar(saab);
         volvoVNR.raiseRamp(1);
@@ -291,10 +295,59 @@ public class Testing {
         volvoVNR.brake(1);
         volvoVNR.lowerRamp(1);
         volvoVNR.unloadCar();
+        // move 0.1 in positive x-direction. unloadCar() should decrease x-position by 2.0
         assertTrue(saab.getPositionX() == -1.9);
-
-
     }
+
     @Test
-    public void
+    public void testLoadVolvoVnrOntoVolvoVnr() {
+        volvoVNR.lowerRamp(1);
+        volvoVNR.loadCar(volvoVNR2);
+        assertTrue(volvoVNR.getloadedCarsSize() == 0);
+    }
+
+    @Test
+    public void testConstructorAndPutVehicleInWorkshopAndGetArrayList() {
+        VehicleWorkshop<Volvo240> volvo240Workshop = new VehicleWorkshop<>(5);
+
+        volvo240Workshop.putVehicleInWorkshop(volvo);
+        volvo240Workshop.putVehicleInWorkshop(volvo);
+
+        assertTrue(volvo240Workshop.getListOfVehicles().size() == 2);
+    }
+
+    @Test
+    public void testWorkshopCapacity() {
+        VehicleWorkshop<Vehicle> vehicleWorkshop1 = new VehicleWorkshop<>(3);
+
+        vehicleWorkshop1.putVehicleInWorkshop(volvo);
+        vehicleWorkshop1.putVehicleInWorkshop(saab);
+        vehicleWorkshop1.putVehicleInWorkshop(volvoVNR);
+        vehicleWorkshop1.putVehicleInWorkshop(scania);
+
+        assertTrue(vehicleWorkshop1.getListOfVehicles().size() == 3);
+    }
+
+    @Test
+    public void testRetrieveFromWorkshop() {
+        VehicleWorkshop<Vehicle> vehicleWorkshop2 = new VehicleWorkshop<>(4);
+
+        vehicleWorkshop2.putVehicleInWorkshop(volvo);
+        vehicleWorkshop2.putVehicleInWorkshop(saab);
+        vehicleWorkshop2.putVehicleInWorkshop(volvoVNR);
+
+        assertTrue(vehicleWorkshop2.retrieveVehicleFromWorkshop(saab) instanceof Saab95);
+    }
+
+    @Test
+    public void testRetrieveReducesWorkshopVehicleList() {
+        VehicleWorkshop<Vehicle> vehicleWorkshop3 = new VehicleWorkshop<>(4);
+
+        vehicleWorkshop3.putVehicleInWorkshop(volvo);
+        vehicleWorkshop3.putVehicleInWorkshop(saab);
+        vehicleWorkshop3.putVehicleInWorkshop(volvoVNR);
+        vehicleWorkshop3.retrieveVehicleFromWorkshop(saab);
+
+        assertTrue(vehicleWorkshop3.getListOfVehicles().size() == 2);
+    }
 }

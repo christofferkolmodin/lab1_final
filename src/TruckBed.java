@@ -1,6 +1,5 @@
 public class TruckBed {
 
-
     public int raiseTruckBed(int maxPosition, int amount, int currentPosition) {
         return Math.min(currentPosition + amount, maxPosition);
     }
@@ -8,15 +7,6 @@ public class TruckBed {
     public int lowerTruckBed(int minPosition, int amount, int currentPosition) {
         return Math.max(currentPosition - amount, minPosition);
     }
-
-    //    public double setTruckBedPosition(double maxPosition, double minPosition, double position){
-//
-//
-//        if ((position > maxPosition) || (position < minPosition)){
-//            return position;
-//        }
-//        return newAngle;
-//    }
 
     public double startEngine(int truckBedPosition, double currentSpeed) {
 

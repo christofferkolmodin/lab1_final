@@ -29,7 +29,7 @@ public class Scania extends Vehicle {
     }
 
     @Override
-    public void gas(double amount){
+    public void gas(double amount) {
         super.gas(parent.gas(getTrailerAngle(), amount));
     }
 
