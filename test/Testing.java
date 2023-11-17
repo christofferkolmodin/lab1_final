@@ -7,8 +7,7 @@ import static org.junit.Assert.assertTrue;
 public class Testing {
 
     private Saab95 saab = new Saab95();
-    private Vehicle volvo = new Volvo240();
-    private Scania scania = new Scania();
+    private Volvo240 volvo = new Volvo240();
     private VolvoVNR volvoVNR = new VolvoVNR();
     private Scania scania = new Scania();
     private VolvoVNR volvoVNR2 = new VolvoVNR();

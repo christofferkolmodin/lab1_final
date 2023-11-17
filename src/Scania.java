@@ -32,6 +32,4 @@ public class Scania extends Vehicle {
     public void gas(double amount) {
         super.gas(parent.gas(getTrailerAngle(), amount));
     }
-
-
 }
