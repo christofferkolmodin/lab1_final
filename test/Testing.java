@@ -5,7 +5,6 @@ import java.awt.*;
 import static org.junit.Assert.assertTrue;
 
 public class Testing {
-
     private Saab95 saab = new Saab95();
     private Volvo240 volvo = new Volvo240();
     private VolvoVNR volvoVNR = new VolvoVNR();
