@@ -234,10 +234,10 @@ public class Testing {
 
 
     @Test
-    public void testVolvoVnrRaisePositionAndUpperLimit() {
+    public void testVolvoVnrLowerRampUpperLimit() {
         volvoVNR.lowerRamp(5);
 
-        assertTrue(volvoVNR.getTruckBedPosition() == 1);
+        assertTrue(volvoVNR.getRampPosition() == 1);
     }
 
     @Test
@@ -245,7 +245,7 @@ public class Testing {
         volvoVNR.lowerRamp(1);
         volvoVNR.raiseRamp(4);
 
-        assertTrue(volvoVNR.getTruckBedPosition() == 0);
+        assertTrue(volvoVNR.getRampPosition() == 0);
     }
 
     @Test

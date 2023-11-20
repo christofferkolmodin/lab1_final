@@ -1,20 +1,13 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class VolvoVNR extends Vehicle{
-
-
-    private final TruckBed parent = new TruckBed();
-    private final int rampUp = 0;
-    private final int rampDown = 1;
+public class VolvoVNR extends Vehicle {
     private final int loadedCarCapacity = 4;
     private final int loadingRange = 2;
     private final int carWeightLimit = 2500;
     private final Stack<Vehicle> loadedCars = new Stack<>();
-    private int truckBedPosition = 0;
 
-    //Variable for max amount of loaded cars
-    //Size of cars cannot be too large (eget antagande)
+    private final TruckBed parent = new TruckBed(0, 1);
 
     public VolvoVNR(){
         super(2, 150, Color.cyan, "VolvoVNR", 6500);
@@ -24,31 +17,31 @@ public class VolvoVNR extends Vehicle{
         return loadedCars.size();
     }
 
-    public int getTruckBedPosition() {
-        return truckBedPosition;
+    public int getRampPosition() {
+        return parent.getTrailerPosition();
     }
 
-    public void lowerRamp(int incrementPosition){
-        truckBedPosition = parent.raiseTruckBed(rampDown, incrementPosition, truckBedPosition);
+    public void lowerRamp(int decrementPosition) {
+        parent.raiseTruckBed(decrementPosition);
     }
 
     // Ramp can only be lowered if the car is not moving
-    public void raiseRamp(int decrementPosition){
-        truckBedPosition = parent.lowerTruckBed(rampUp, decrementPosition, truckBedPosition);
+    public void raiseRamp(int incrementPosition){
+        parent.lowerTruckBed(incrementPosition);
     }
 
     @Override
     public void startEngine(){
-        currentSpeed = parent.startEngine(getTruckBedPosition(), currentSpeed);
+        currentSpeed = parent.startEngine(currentSpeed);
     }
 
     @Override
     public void gas(double amount){
-        super.gas(parent.gas(getTruckBedPosition(), amount));
+        super.gas(parent.gas(amount));
     }
 
     public void loadCar(Vehicle car){
-        if (getTruckBedPosition() == rampDown && car.getCarWeightInKG() <= carWeightLimit) {
+        if (parent.getTrailerPosition() == 1 && car.getCarWeightInKG() <= carWeightLimit) {
             if (car.getPositionX() >= xPosition - loadingRange &&
                     car.getPositionX() <= xPosition + loadingRange &&
                     car.getPositionY() >= yPosition - loadingRange &&
@@ -68,10 +61,9 @@ public class VolvoVNR extends Vehicle{
     //Unloaded cars should be close to the truck directly after unloading
     //Unloaded cars should unload in reverse order of the loading (first in, last out)
     protected void unloadCar(){
-        if (getTruckBedPosition() == rampDown && loadedCars.size() != 0)
+        if (parent.getTrailerPosition() == 1 && loadedCars.size() != 0) {
             loadedCars.peek().xPosition = xPosition - loadingRange;
-            loadedCars.pop();
-
+            loadedCars.pop(); }
     }
 
     @Override

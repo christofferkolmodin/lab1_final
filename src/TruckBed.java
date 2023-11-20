@@ -1,19 +1,32 @@
+import java.awt.*;
+
 public class TruckBed {
+    private int minPosition;
+    private int maxPosition;
+    private int position = 0;
 
-    public int raiseTruckBed(int maxPosition, int amount, int currentPosition) {
-        return Math.min(currentPosition + amount, maxPosition);
+    public TruckBed(int minPosition, int maxPosition) {
+        this.minPosition = minPosition;
+        this.maxPosition = maxPosition;
     }
 
-    public int lowerTruckBed(int minPosition, int amount, int currentPosition) {
-        return Math.max(currentPosition - amount, minPosition);
+    public int getTrailerPosition() {
+        return position;
     }
 
-    public double startEngine(int truckBedPosition, double currentSpeed) {
+    public void raiseTruckBed(int amount) {
+        position = Math.min(position + amount, maxPosition);
+    }
 
+    public void lowerTruckBed(int amount) {
+        position = Math.max(position - amount, minPosition);
+    }
+
+    public double startEngine(double currentSpeed) {
         if (currentSpeed != 0) {
             System.out.println("Engine is already on!");
         }
-        else if (truckBedPosition == 0) {
+        else if (position == 0) {
             return 0.1;
         }
         else {
@@ -22,8 +35,8 @@ public class TruckBed {
         return currentSpeed;
     }
 
-    public double gas(int truckBedPosition, double amount) {
-        if (truckBedPosition == 0) {
+    public double gas(double amount) {
+        if (position == 0) {
             return amount;
         }
         else {
