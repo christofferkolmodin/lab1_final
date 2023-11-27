@@ -21,7 +21,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<ACar> cars = new ArrayList<>();
+    ArrayList<Vehicle> cars = new ArrayList<>();
 
     //methods:
 
@@ -41,12 +41,55 @@ public class CarController {
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+
+    public static class Collision<V extends Vehicle>{
+        static boolean collided = false;
+
+        public static void checkCollision(Vehicle car){
+            System.out.println(car.getPositionX());
+            System.out.println(car.getPositionY());
+
+
+            if (((car.getPositionX() >= 700) || (car.getPositionX() < -10))&&(!collided)) {
+                car.stopEngine();
+                car.turnRight();
+                car.turnRight();
+                car.startEngine();
+                car.gas(20);
+
+                collided = true;
+
+            }else if((((car.getPositionY() < -60) || car.getPositionY() > 740)) && (!collided)){
+                car.stopEngine();
+                car.turnRight();
+                car.turnRight();
+                car.startEngine();
+                car.gas(20);
+
+                collided = true;
+
+            }else{
+                collided = false;
+
+            }
+
+
+
+        }
+
+
+    }
+
+
+
+
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (ACar car : cars) {
+            for (Vehicle car : cars) {
                 car.move();
-                int x = (int) Math.round(car.getPosition().getX());
-                int y = (int) Math.round(car.getPosition().getY());
+                int x = (int) Math.round(car.getPositionX());
+                int y = (int) Math.round(car.getPositionY());
+                Collision.checkCollision(car);
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -57,9 +100,19 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (ACar car : cars
+        for (Vehicle car : cars
                 ) {
             car.gas(gas);
         }
     }
+
+    void brake(int amount) {
+        double brake = ((double) amount) / 100;
+        for (Vehicle car : cars
+        ) {
+            car.brake(brake);
+        }
+    }
+
+
 }

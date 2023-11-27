@@ -7,17 +7,21 @@ import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel <car  extends Vehicle>extends JPanel{
+
+    car Vehicle;
 
     // Just a single image, TODO: Generalize
     BufferedImage volvoImage;
     // To keep track of a singel cars position
     Point volvoPoint = new Point();
+    Point scaniaPoint = new Point();
 
     // TODO: Make this genereal for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+    void moveit(){
+        //Point volvoPoint = new Point(car.getX(), car.getY());
+        //volvoPoint.x = x;
+       // volvoPoint.y = y;
     }
 
     // Initializes the panel and reads the images
